@@ -39,7 +39,7 @@ pub contract ExampleNFT: NonFungibleToken {
         pub fun deposit(token: @NonFungibleToken.NFT)
         pub fun getIDs(): [UInt64]
         pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT
-        pub fun borrowExampleNFT(id: UInt64): &ExampleNFT.NFT? {
+        pub fun borrowExampleNFT(id: UInt64): &NFT? {
             post {
                 (result == nil) || (result?.id == id):
                     "Cannot borrow ExampleNFT reference: the ID of the returned reference is incorrect"
@@ -57,7 +57,7 @@ pub contract ExampleNFT: NonFungibleToken {
         }
 
         pub fun deposit(token: @NonFungibleToken.NFT) {
-            let token: @NFT <- token as! @ExampleNFT.NFT
+            let token: @NFT <- token as! @NFT
             emit Deposit(id: token.id, to: self.owner?.address)
             self.ownedNFTs[token.id] <-! token
         }
@@ -70,10 +70,10 @@ pub contract ExampleNFT: NonFungibleToken {
             return (&self.ownedNFTs[id] as &NonFungibleToken.NFT?)!
         }
        
-        pub fun borrowExampleNFT(id: UInt64): &ExampleNFT.NFT? {
+        pub fun borrowExampleNFT(id: UInt64): &NFT? {
             if self.ownedNFTs[id] != nil {
                 let ref = (&self.ownedNFTs[id] as auth &NonFungibleToken.NFT?)!
-                return ref as! &ExampleNFT.NFT
+                return ref as! &NFT
             }
 
             return nil
@@ -95,12 +95,11 @@ pub contract ExampleNFT: NonFungibleToken {
     pub resource Minter {
 
         pub fun mintNFT(
-            recipient: &Collection{NonFungibleToken.Receiver},
             name: String,
             description: String,
             thumbnail: String,
             metadata: {String: AnyStruct}
-        ) {
+        ): @NFT {
             let currentBlock = getCurrentBlock()
             metadata["mintedBlock"] = currentBlock.height
             metadata["mintedTime"] = currentBlock.timestamp
@@ -112,7 +111,7 @@ pub contract ExampleNFT: NonFungibleToken {
                 metadata: metadata
             )
 
-            recipient.deposit(token: <- newNFT)
+            return <- newNFT
         }
     }
 

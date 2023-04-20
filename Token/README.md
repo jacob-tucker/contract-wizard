@@ -20,34 +20,49 @@ If on, add the `ViewResolver` import
 
 Type: list of non-exclusive options that are each an on/off toggle
 
-- Display
+- FTView
   - name
-  - description
-  - image url
-- NFTCollectionDisplay
-  - name
+  - symbol
   - description
   - logo link
   - socials
   - url
-- NFTCollectionData
-- Royalties
-  - list of % and address
-- ExternalURL
+- FTDisplay
+  - name
+  - symbol
+  - description
+  - logo link
+  - socials
   - url
+- FTVaultData
 
-If any are turned on, add the `MetadataViews` import and implement them on `NFT` and `Collection`. Also add the `resolveView` and `getViews` functions on the `NFT` resource.
+If any are turned on, add the `FungibleTokenMetadataViews` import and implement them on `Vault`.
 For each one that is on, add that MetadataView.
+
+---
+
+### Events
+
+Type: list of non-exclusive options that are each an on/off toggle
+
+- TokensBurned
+- Tokens Minted
 
 ---
 
 ### Minting
 
-Type: list of exclusive options (pick 1)
+Type: list of exclusive options
 
 1. Only owner mint
 2. Owner + whoever owner wants to give access to
 3. Public minting
+
+#### [*If 1 or 2 is selected*] Allowed Amount
+
+Type: on/off toggle
+
+If on, put input field for the amount they should be allowed
 
 #### [*If 2 or 3 is selected*] Pausable
 
@@ -57,20 +72,16 @@ Type: on/off toggle
 
 Type: list of exclusive options (pick 1)
 
-1. User purchase an NFT of their choice
-2. User purchase an NFT where they don't know the metadata
+1. User purchases pre-defined prices
+2. User sends in any amount of payment and token are calculated
 
 ---
 
-### NFT Metadata
+### Supply
 
-Type: list of non-exclusive options
+Type: on/off toggle for each
 
-- Add sequential serials to NFTs
-- [Component that allows users to add key-value pairs]
+If on, put input field
 
----
-
-### Soulbound
-
-Type: on/off toggle
+- Initial Supply
+- Max supply
