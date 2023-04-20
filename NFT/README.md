@@ -29,9 +29,9 @@ For each one that is on, add that MetadataView.
 
 Type: list of exclusive options (pick 1)
 
-- Only owner mint
-- Owner + whoever owner wants to give access to
-- Public minting
+1. Only owner mint
+2. Owner + whoever owner wants to give access to
+3. Public minting
 
 ### Purchase
 
@@ -39,8 +39,8 @@ Type: list of exclusive options (pick 1)
 
 Note: If this is turned on, then auto-set **Minting** to "Public minting".
 
-- User purchase an NFT of their choice
-- User purchase an NFT where they don't know the metadata
+1. User purchase an NFT of their choice
+2. User purchase an NFT where they don't know the metadata
 
 ### NFT Metadata
 
