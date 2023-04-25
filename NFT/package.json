@@ -1,0 +1,12 @@
+{
+  "name": "nft",
+  "version": "1.0.0",
+  "description": "`ExampleNFT.cdc` - the bare minimum (+ some niceties like paths)",
+  "main": "builder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC"
+}

@@ -14,23 +14,9 @@ pub contract ExampleNFT: NonFungibleToken {
 
     pub resource NFT: NonFungibleToken.INFT {
         pub let id: UInt64
-        pub let name: String
-        pub let description: String
-        pub let thumbnail: String
-        access(self) let metadata: {String: AnyStruct}
     
-        init(
-            name: String,
-            description: String,
-            thumbnail: String,
-            metadata: {String: AnyStruct},
-        ) {
+        init() {
             self.id = self.uuid
-            self.name = name
-            self.description = description
-            self.thumbnail = thumbnail
-            self.metadata = metadata
-
             ExampleNFT.totalSupply = ExampleNFT.totalSupply + 1
         }
     }
@@ -93,24 +79,8 @@ pub contract ExampleNFT: NonFungibleToken {
     }
 
     pub resource Minter {
-
-        pub fun mintNFT(
-            name: String,
-            description: String,
-            thumbnail: String,
-            metadata: {String: AnyStruct}
-        ): @NFT {
-            let currentBlock = getCurrentBlock()
-            metadata["mintedBlock"] = currentBlock.height
-            metadata["mintedTime"] = currentBlock.timestamp
-
-            var newNFT: @NFT <- create NFT(
-                name: name,
-                description: description,
-                thumbnail: thumbnail,
-                metadata: metadata
-            )
-
+        pub fun mintNFT(): @NFT {
+            var newNFT: @NFT <- create NFT()
             return <- newNFT
         }
     }
