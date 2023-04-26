@@ -55,10 +55,7 @@ Type: on/off toggle
 
 #### [*If 3 is selected*] Purchase
 
-Type: list of exclusive options (pick 1)
-
-1. User purchase an NFT of their choice
-2. User purchase an NFT where they don't know the metadata
+Type: on/off toggle
 
 ---
 

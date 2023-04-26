@@ -8,5 +8,9 @@
   },
   "type": "module",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@onflow/cadence-parser": "^0.26.0",
+    "prettier": "^2.8.8"
+  }
 }
